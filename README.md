@@ -54,6 +54,16 @@ CUDA_VISIBLE_DEVICES=5 python simple_trainer.py default \
 
 参考：gsplat 官方 paper 里 garden（不 packed、30000 步）PSNR 在 26-28 dB。我们 7000 步 + packed 拿到 26.24，已经落在合理区间。
 
+### 可视化结果（左 GT 真值 / 右 3DGS 渲染，step 7000）
+
+<p align="center">
+  <img src="outputs/renders_baseline/val_step6999_0000.png" width="800"><br>
+  <img src="outputs/renders_baseline/val_step6999_0005.png" width="800"><br>
+  <img src="outputs/renders_baseline/val_step6999_0010.png" width="800">
+</p>
+
+完整对比图 48 张在 `outputs/renders_baseline/`；训练轨迹插值渲染视频 `outputs/videos_baseline/traj_6999.mp4`。
+
 ### 多卡并行 sweep（4 配置同时跑，4 张卡）
 
 没有用 DDP（3090 全 PCIe、无 NVLink，DDP 通讯开销不划算），而是 4 个独立进程各占一张卡：
@@ -117,6 +127,13 @@ PY
 
 - 20 步 DDIM，16 帧 720×480，fp16 + CPU offload + VAE tiling
 - 同 prompt 不同 seed 逐帧 LPIPS = **0.532**（非常大）
+
+### 生成视频示例（16 帧 · 720×480 · 约 60 秒/条）
+
+<p align="center">
+  <b>白天 dashcam · seed 42</b>　|　<b>白天 dashcam · seed 0（同 prompt 不同 seed）</b>　|　<b>夜间城市 · seed 42</b><br>
+  视频文件：<code>outputs/cogvideo/drive_dashcam_seed42.mp4</code>　<code>drive_dashcam_seed0.mp4</code>　<code>drive_night_seed42.mp4</code>
+</p>
 
 ### 这个 0.532 意味着什么
 
