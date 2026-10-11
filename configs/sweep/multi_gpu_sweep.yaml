@@ -1,0 +1,43 @@
+# 3DGS + CogVideoX-2B driving scene generation sweep template
+# 修改 launch.command 与 args 即可接入你现有训练/推理入口。
+
+project: gsplat-cogvideo-driving-demo
+seed: 42
+
+common:
+  scene_type: driving
+  model: CogVideoX-2B
+  guidance_scale: 6.0
+  num_frames: 49
+  fp16: true
+
+launch:
+  command: python train_or_infer.py
+
+experiments:
+  - name: baseline_1gpu_512
+    gpus: 1
+    per_gpu_batch_size: 1
+    resolution: 512
+    diffusion_steps: 30
+    args:
+      lr: 0.0001
+      sh_degree: 3
+
+  - name: throughput_2gpu_576
+    gpus: 2
+    per_gpu_batch_size: 1
+    resolution: 576
+    diffusion_steps: 28
+    args:
+      lr: 0.0001
+      sh_degree: 3
+
+  - name: quality_4gpu_720
+    gpus: 4
+    per_gpu_batch_size: 1
+    resolution: 720
+    diffusion_steps: 36
+    args:
+      lr: 0.00008
+      sh_degree: 3
