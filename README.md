@@ -1,0 +1,1 @@
+# gsplat-cogvideo-demo
