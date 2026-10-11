@@ -1,0 +1,19 @@
+# 数据 / 权重 / ckpt 不上传（太大）
+data/
+models/
+*.zip
+*.pt
+*.pth
+*.safetensors
+*.bin
+
+# 日志
+logs/
+
+# 垫片（本地用，不需要公开）
+shims/
+
+# 系统
+.DS_Store
+__pycache__/
+*.pyc
