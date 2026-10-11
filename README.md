@@ -169,17 +169,5 @@ qzc_3DGS/
   DEMO_REPORT.md           # 详细报告（A+B 完整版）
 ```
 
----
 
-## 没做的（如实列出）
 
-- 30000 步完整训练（只跑了 7000 步，数字已落在合理区间）
-- 原版 graphdeco-inria/gaussian-splatting 对照（编译 diff-gaussian-rasterization 需要 nvcc）
-- nerfstudio splatfacto 对照（tiny-cuda-nn 也需要 nvcc）
-- 手机环绕视频跑 COLMAP SfM（容器里没装 COLMAP）
-- RAFT 光流时序一致性（用了 LPIPS 近似）
-- LTX-Video / SVD 对照（CogVideoX-2B 已跑通，够用）
-
----
-
-*这个项目不是作业，是为小马智行世界模型实习准备的。所有数字都来自脚本输出，没有编造。*
